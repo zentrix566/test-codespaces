@@ -1,0 +1,32 @@
+{
+  "name": "AI-Ops-Dev-Environment",
+  // 使用微软官方的全能镜像，内置了 Python, Node.js 等
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  
+  "features": {
+    // 1. 安装 kubectl, helm 和 minikube (你需要的)
+    "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
+      "version": "latest",
+      "helm": "latest",
+      "minikube": "latest"
+    },
+    // 2. 安装 Docker-in-Docker (为了让 minikube 能在云端跑起来)
+    "ghcr.io/devcontainers/features/docker-in-docker:1": {
+      "version": "latest"
+    }
+  },
+
+  // 这里的设置会让 Codespaces 启动后自动帮你打开一些好用的插件
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-kubernetes-tools.vscode-kubernetes-tools",
+        "ms-azuretools.vscode-docker",
+        "ms-python.python"
+      ]
+    }
+  },
+
+  // 如果你想一进环境就自动启动 minikube，可以取消下面这行的注释
+  // "postCreateCommand": "minikube start --driver=docker"
+}
